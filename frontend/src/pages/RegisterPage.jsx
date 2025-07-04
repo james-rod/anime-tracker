@@ -31,9 +31,11 @@ function RegisterPage() {
     setIsLoading(true);
 
     try {
-      const data = await axios.post("/api/auth/register", formData);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data));
+      const response = await axios.post("/api/auth/register", formData);
+      const userData = response.data;
+
+      localStorage.setItem("token", userData.token); // ✅ correct
+      localStorage.setItem("user", JSON.stringify(userData));
 
       toast({
         title: "Account Created",
