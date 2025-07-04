@@ -69,14 +69,60 @@ function RegisterPage() {
       <Heading mb={6} textAlign={"center"}>
         Sign Up
       </Heading>
-      <form>
-        <VStack>
+      <form onSubmit={handleSubmit}>
+        <VStack spacing={4}>
           <FormControl isRequired>
-            <FormLabel></FormLabel>
-            <Input />
+            <FormLabel>Username</FormLabel>
+            <Input
+              name="username"
+              type="text"
+              value={formData.username}
+              onChange={handleChange}
+            />
           </FormControl>
+
+          <FormControl isRequired>
+            <FormLabel>Email</FormLabel>
+            <Input
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </FormControl>
+
+          <FormControl isRequired>
+            <FormLabel>Password</FormLabel>
+            <Input
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </FormControl>
+
+          <Button
+            type="submit"
+            colorScheme="blue"
+            width={"full"}
+            isLoading={isLoading}
+          >
+            Register
+          </Button>
+          <Text fontSize={"sm"}>
+            Already have an account?{" "}
+            <Text
+              as={"span"}
+              color={"blue.500"}
+              cursor={"pointer"}
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </Text>
+          </Text>
         </VStack>
       </form>
     </Box>
   );
 }
+export default RegisterPage;
