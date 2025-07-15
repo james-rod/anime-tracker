@@ -19,7 +19,7 @@ router.post("/register", async (req, res) => {
     await newUser.save();
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
       //Generates a JSON Web Token containing the user’s ID, signed with your secret key. This token is valid for 30 days.
-      expiresIn: "10s",
+      expiresIn: "2h",
     });
     res.status(201).json({ _id: newUser._id, username, email, token });
   } catch (error) {
@@ -38,7 +38,7 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" }); // Prevents users from logging in with incorrect credentials.
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       //Creates a JSON Web Token with the user’s ID, signed with a secret key, set to expire in 30 days.
-      expiresIn: "10s",
+      expiresIn: "2h",
     });
     res.json({
       _id: user._id,
